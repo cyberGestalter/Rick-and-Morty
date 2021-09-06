@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.rick_and_morty.viewmodel.CharacterDetailsViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.example.rick_and_morty.ui.RickAndMortyAdapter" />
+
+        <variable
+            name="locListener"
+            type="com.example.rick_and_morty.ui.fragments.CharacterDetailsFragment.OnLocationClickListener" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/character_details_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.CharacterDetailsFragment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/character_details_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.character == null ? View.VISIBLE : View.GONE}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/character_detail_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.character == null ? View.GONE : View.VISIBLE}">
+
+                    <ImageView
+                        android:id="@+id/character_detail_image"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="@dimen/default_margin"
+                        android:contentDescription="@string/character_image_content_description"
+                        app:characterImage="@{viewModel.character}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/character_detail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:gravity="center"
+                        android:text="@{viewModel.character.name}"
+                        android:textSize="@dimen/detail_value_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_image" />
+
+                    <TextView
+                        android:id="@+id/character_detail_created_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/detail_title_bottom_offset"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:text="@string/character_created_title"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_created"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_name" />
+
+                    <TextView
+                        android:id="@+id/character_detail_created"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.created}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_created_title"
+                        app:layout_constraintTop_toTopOf="@id/character_detail_created_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_species_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/character_species_title"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_species"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_created_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_species"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.character.species}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_species_title"
+                        app:layout_constraintTop_toTopOf="@id/character_detail_species_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_status_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/character_status_title"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_status"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_species_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.character.status}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_status_title"
+                        app:layout_constraintTop_toTopOf="@id/character_detail_status_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_type_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/character_type_title"
+                        android:visibility="@{viewModel.character.type.isEmpty ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_type"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_status_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.character.type}"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.character.type.isEmpty ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_type_title"
+                        app:layout_constraintTop_toTopOf="@id/character_detail_type_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_gender_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/character_gender_title"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_gender"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_type_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_gender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.character.gender}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_gender_title"
+                        app:layout_constraintTop_toTopOf="@id/character_detail_gender_title" />
+
+                    <ImageButton
+                        android:id="@+id/character_detail_origin_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:background="@null"
+                        android:contentDescription="@string/open_origin_btn"
+                        android:onClick="@{() -> locListener.onLocationClick(viewModel.origin)}"
+                        android:paddingStart="@dimen/zero_padding"
+                        android:paddingEnd="@dimen/default_margin"
+                        android:src="@drawable/ic_details"
+                        android:visibility="@{viewModel.origin == null ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toTopOf="@id/divider"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_gender_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_origin_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/character_origin_title"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_location_title"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_origin_btn"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_gender_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_origin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:maxLines="2"
+                        android:text="@{viewModel.origin.name ?? @string/unknown_location}"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/divider"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_location"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_origin_title"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_origin_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_location_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@string/character_location_title"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_location_btn"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_origin_title"
+                        app:layout_constraintTop_toTopOf="@id/character_detail_origin_title" />
+
+                    <TextView
+                        android:id="@+id/character_detail_location"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:maxLines="2"
+                        android:text="@{viewModel.location.name ?? @string/unknown_location}"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/divider"
+                        app:layout_constraintEnd_toStartOf="@id/character_detail_location_btn"
+                        app:layout_constraintStart_toEndOf="@id/character_detail_origin"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_location_title" />
+
+                    <ImageButton
+                        android:id="@+id/character_detail_location_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:background="@null"
+                        android:contentDescription="@string/open_current_location_btn"
+                        android:onClick="@{() -> locListener.onLocationClick(viewModel.location)}"
+                        android:src="@drawable/ic_details"
+                        android:visibility="@{viewModel.location == null ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@id/character_detail_origin_btn"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/character_detail_origin_btn" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/divider_width"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:background="@color/black"
+                        app:layout_constraintBottom_toTopOf="@id/character_detail_episodes_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/character_detail_episodes_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:text="@string/character_episodes_title"
+                        android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/character_detail_episodes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        android:adapter="@{adapter}"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="@id/character_detail_episodes_title"
+                        app:layout_constraintTop_toBottomOf="@id/character_detail_episodes_title" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

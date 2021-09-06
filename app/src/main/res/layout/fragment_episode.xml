@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.rick_and_morty.viewmodel.EpisodeViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.example.rick_and_morty.ui.RickAndMortyAdapter" />
+
+        <variable
+            name="layoutManager"
+            type="androidx.recyclerview.widget.GridLayoutManager" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.fragments.EpisodeFragment">
+
+        <include
+            android:id="@+id/fragment_episode_search_name"
+            layout="@layout/search_box" />
+
+        <include
+            android:id="@+id/fragment_episode_search_panel"
+            layout="@layout/episode_search_panel"
+            android:visibility="gone" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/episode_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/episode_no_episode_found"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/no_episodes_found"
+                    android:visibility="gone" />
+
+                <ProgressBar
+                    android:id="@+id/episode_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{(viewModel.episodeList.results == null || viewModel.episodeList.results.isEmpty) ? View.VISIBLE : View.GONE}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/episode_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adapter="@{adapter}"
+                    android:orientation="vertical"
+                    app:layoutManager="@{layoutManager}" />
+            </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+</layout>

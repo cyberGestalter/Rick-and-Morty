@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/location_search_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/search_box_margin"
+        android:layout_marginVertical="@dimen/search_box_margin"
+        app:cardCornerRadius="@dimen/search_box_radius"
+        app:cardElevation="@dimen/search_box_elevation">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_padding">
+
+                <EditText
+                    android:id="@+id/location_search_dimension_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/default_margin"
+                    android:hint="@string/location_search_dimension_title"
+                    android:inputType="text"
+                    android:textSize="@dimen/value_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/location_search_type_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/default_margin"
+                    android:hint="@string/location_search_type_title"
+                    android:inputType="text"
+                    android:textSize="@dimen/value_text_size"
+                    app:layout_constraintStart_toStartOf="@id/location_search_dimension_title"
+                    app:layout_constraintTop_toBottomOf="@id/location_search_dimension_title" />
+
+                <Button
+                    android:id="@+id/location_search_reset_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_margin"
+                    android:backgroundTint="@color/purple_200"
+                    android:text="@string/search_reset_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/location_search_find_button"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_search_type_title" />
+
+                <Button
+                    android:id="@+id/location_search_find_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_margin"
+                    android:text="@string/search_find_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/location_search_reset_button"
+                    app:layout_constraintTop_toBottomOf="@id/location_search_type_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

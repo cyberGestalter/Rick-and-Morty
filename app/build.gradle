@@ -1,0 +1,90 @@
+plugins {
+    id 'kotlin-kapt'
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.example.rick_and_morty"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    def coreKtx_version = "1.6.0"
+    def appcompat_version = "1.3.1"
+    def material_version = "1.4.0"
+    def constraintLayout_version = "2.1.0"
+    def legacySupport_version = "1.0.0"
+    def glide_version = "4.12.0"
+    def viewmodel_version = "2.3.1"
+    def ktx_version = "1.3.6"
+    def rxjava_version = "3.0.0"
+    def dagger_version = "2.37"
+    def daggerCompiler_version = "2.27"
+
+    // Core libraries
+    implementation "androidx.core:core-ktx:$coreKtx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout_version"
+    implementation "androidx.legacy:legacy-support-v4:$legacySupport_version"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewmodel_version"
+    // method from "import androidx.fragment.app.viewModels"
+    implementation "androidx.fragment:fragment-ktx:$ktx_version"
+
+    // RxJava3
+    implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"
+
+    // Dagger 2
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$daggerCompiler_version"
+    // Caused by: com.sun.tools.javac.processing.AnnotationProcessingError:
+    // java.lang.IllegalStateException: Unsupported metadata version. Check that your Kotlin version is >= 1.0
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.2.0"
+
+    def mockk_version = "1.12.0"
+    def junit_ut_version = "4.13.2"
+
+    // Mockk testing
+    testImplementation "io.mockk:mockk:$mockk_version"
+    // JUnit testing
+    testImplementation "junit:junit:$junit_ut_version"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
+    implementation project(":data")
+}

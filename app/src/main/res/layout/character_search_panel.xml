@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/character_search_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/search_box_margin"
+        android:layout_marginVertical="@dimen/search_box_margin"
+        app:cardCornerRadius="@dimen/search_box_radius"
+        app:cardElevation="@dimen/search_box_elevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/item_padding">
+
+            <TextView
+                android:id="@+id/character_search_status_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/character_search_status_title"
+                android:textSize="@dimen/value_text_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/character_search_statuses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/character_search_status_title"
+                app:layout_constraintTop_toBottomOf="@id/character_search_status_title">
+
+                <RadioButton
+                    android:id="@+id/character_search_status_alive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/character_search_status_alive" />
+
+                <RadioButton
+                    android:id="@+id/character_search_status_dead"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/character_search_status_dead" />
+
+                <RadioButton
+                    android:id="@+id/character_search_status_unknown"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/character_search_status_unknown" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/character_search_species_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:hint="@string/character_search_species_title"
+                android:inputType="text"
+                android:textSize="@dimen/value_text_size"
+                app:layout_constraintStart_toStartOf="@id/character_search_status_title"
+                app:layout_constraintTop_toBottomOf="@id/character_search_statuses" />
+
+            <EditText
+                android:id="@+id/character_search_type_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:hint="@string/character_search_type_title"
+                android:inputType="text"
+                android:textSize="@dimen/value_text_size"
+                app:layout_constraintStart_toStartOf="@id/character_search_status_title"
+                app:layout_constraintTop_toBottomOf="@id/character_search_species_title" />
+
+            <TextView
+                android:id="@+id/character_search_gender_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:text="@string/character_search_gender_title"
+                android:textSize="@dimen/value_text_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/character_search_status_title"
+                app:layout_constraintTop_toBottomOf="@id/character_search_type_title" />
+
+            <RadioGroup
+                android:id="@+id/character_search_genders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/character_search_status_title"
+                app:layout_constraintTop_toBottomOf="@id/character_search_gender_title">
+
+                <RadioButton
+                    android:id="@+id/character_search_gender_male"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/character_search_gender_male" />
+
+                <RadioButton
+                    android:id="@+id/character_search_gender_female"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/character_search_gender_female" />
+
+                <RadioButton
+                    android:id="@+id/character_search_gender_genderless"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/character_search_gender_genderless" />
+
+                <RadioButton
+                    android:id="@+id/character_search_gender_unknown"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/character_search_gender_unknown" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/character_search_reset_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:backgroundTint="@color/purple_200"
+                android:text="@string/search_reset_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/character_search_find_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/character_search_genders" />
+
+            <Button
+                android:id="@+id/character_search_find_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/search_find_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/character_search_reset_button"
+                app:layout_constraintTop_toBottomOf="@id/character_search_genders" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Margins-->
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="two_default_margin">16dp</dimen>
+    <dimen name="search_box_image_margin">16dp</dimen>
+    <dimen name="search_box_text_margin">24dp</dimen>
+    <dimen name="search_box_margin">4dp</dimen>
+
+    <!--Paddings-->
+    <dimen name="zero_padding">0dp</dimen>
+    <dimen name="item_padding">16dp</dimen>
+    <dimen name="search_box_text_padding">8dp</dimen>
+
+    <!--Text sizes-->
+    <dimen name="value_text_size">20sp</dimen>
+    <dimen name="item_title_text_size">12sp</dimen>
+    <dimen name="detail_value_text_size">25sp</dimen>
+    <dimen name="splash_text_size">30sp</dimen>
+
+    <!--Element sizes-->
+    <dimen name="item_image_side">200dp</dimen>
+    <dimen name="divider_width">1dp</dimen>
+    <dimen name="search_box_radius">12dp</dimen>
+    <dimen name="search_box_elevation">8dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
+    <dimen name="detail_title_bottom_offset">20dp</dimen>
+    <dimen name="splash_image_size">300dp</dimen>
+</resources>

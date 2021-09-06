@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.rick_and_morty.viewmodel.LocationDetailsViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.example.rick_and_morty.ui.RickAndMortyAdapter" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/location_details_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.fragments.LocationDetailsFragment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/location_details_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.location == null ? View.VISIBLE : View.GONE}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/location_detail_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.location == null ? View.GONE : View.VISIBLE}">
+
+                    <TextView
+                        android:id="@+id/location_detail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:gravity="center"
+                        android:text="@{viewModel.location.name}"
+                        android:textSize="@dimen/detail_value_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/location_detail_created_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/detail_title_bottom_offset"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:text="@string/location_created_title"
+                        app:layout_constraintEnd_toStartOf="@id/location_detail_created"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/location_detail_name" />
+
+                    <TextView
+                        android:id="@+id/location_detail_created"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.created}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/location_detail_created_title"
+                        app:layout_constraintTop_toTopOf="@id/location_detail_created_title" />
+
+                    <TextView
+                        android:id="@+id/location_detail_type_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/location_type_title"
+                        app:layout_constraintEnd_toStartOf="@id/location_detail_type"
+                        app:layout_constraintStart_toStartOf="@id/location_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/location_detail_created_title" />
+
+                    <TextView
+                        android:id="@+id/location_detail_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.location.type}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/location_detail_type_title"
+                        app:layout_constraintTop_toBottomOf="@id/location_detail_created_title" />
+
+                    <TextView
+                        android:id="@+id/location_detail_dimension_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/location_dimension_title"
+                        app:layout_constraintEnd_toStartOf="@id/location_detail_dimension"
+                        app:layout_constraintStart_toStartOf="@id/location_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/location_detail_type_title" />
+
+                    <TextView
+                        android:id="@+id/location_detail_dimension"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        android:gravity="end"
+                        android:text="@{viewModel.location.dimension}"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/location_detail_dimension_title"
+                        app:layout_constraintTop_toBottomOf="@id/location_detail_type_title" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/divider_width"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:background="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/location_detail_dimension" />
+
+                    <TextView
+                        android:id="@+id/location_detail_residents_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/default_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:text="@string/location_detail_residents_title"
+                        android:textSize="@dimen/value_text_size"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/location_detail_characters"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        android:adapter="@{adapter}"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintStart_toStartOf="@id/location_detail_created_title"
+                        app:layout_constraintTop_toBottomOf="@id/location_detail_residents_title"
+                        app:spanCount="2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

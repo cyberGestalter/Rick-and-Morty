@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Rick and Morty</string>
+
+    <!--Strings for characters-->
+    <string name="character_title">Characters</string>
+    <string name="character_gender_title">Gender:</string>
+    <string name="character_status_title">Status:</string>
+    <string name="character_species_title">Species:</string>
+    <string name="character_name_title">Name:</string>
+    <string name="character_image_content_description">Character image</string>
+    <string name="character_type_title">Type:</string>
+    <string name="character_origin_title">Origin:</string>
+    <string name="character_created_title">Created:</string>
+    <string name="character_episodes_title">Episodes:</string>
+    <string name="character_location_title">Location:</string>
+    <string name="character_search_status_title">Status</string>
+    <string name="character_search_status_alive">Alive</string>
+    <string name="character_search_status_dead">Dead</string>
+    <string name="character_search_status_unknown">Unknown</string>
+    <string name="character_search_gender_title">Gender</string>
+    <string name="character_search_gender_male">Male</string>
+    <string name="character_search_gender_female">Female</string>
+    <string name="character_search_gender_genderless">Genderless</string>
+    <string name="character_search_gender_unknown">Unknown</string>
+    <string name="character_search_species_title">Species</string>
+    <string name="character_search_type_title">Type</string>
+    <string name="unknown_location">unknown</string>
+    <string name="open_origin_btn">Open origin</string>
+    <string name="open_current_location_btn">Open current location</string>
+
+    <!--Strings for locations-->
+    <string name="location_title">Locations</string>
+    <string name="location_name_title">Name:</string>
+    <string name="location_type_title">Type:</string>
+    <string name="location_dimension_title">Dimension:</string>
+    <string name="location_created_title">Created:</string>
+    <string name="location_detail_residents_title">Residents:</string>
+    <string name="location_search_type_title">Type</string>
+    <string name="location_search_dimension_title">Dimension</string>
+
+    <!--Strings for episodes-->
+    <string name="episode_title">Episodes</string>
+    <string name="episode_name_title">Name:</string>
+    <string name="episode_episode_title">Episode:</string>
+    <string name="episode_air_date_title">Air date:</string>
+    <string name="episode_search_season_title">Season number</string>
+    <string name="episode_search_episode_title">Episode number</string>
+    <string name="episode_season_title">Season</string>
+    <string name="episode_number_title">Episode</string>
+
+    <!--Strings for search box-->
+    <string name="search_image_content_description">Search in list</string>
+    <string name="search_hint">Name</string>
+    <string name="search_find_button">Find</string>
+    <string name="search_reset_button">Reset</string>
+
+    <!--Common strings-->
+    <string name="splash_screen_image">Splash screen image</string>
+    <string name="no_character_found">No characters found</string>
+    <string name="no_location_found">No locations found</string>
+    <string name="no_episodes_found">No episodes found</string>
+    <string name="no_connection_to_the_internet">No connection to the internet</string>
+    <string name="no_such_fragment_type">No such fragment type</string>
+    <string name="no_appropriate_view_holder">No appropriate view holder</string>
+</resources>

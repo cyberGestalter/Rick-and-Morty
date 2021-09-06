@@ -1,0 +1,55 @@
+plugins {
+    id 'kotlin-kapt'
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    def coroutines_version = "1.5.0"
+    def retrofit_version = "2.9.0"
+    def room_version = "2.3.0"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
+    // Retrofit with Moshi Converter
+    api "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // Room
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+    api project(":domain")
+
+    def mockk_version = "1.12.0"
+    def junit_ut_version = "4.13.2"
+    // Mockk testing
+    testImplementation "io.mockk:mockk:$mockk_version"
+    // JUnit testing
+    testImplementation "junit:junit:$junit_ut_version"
+}

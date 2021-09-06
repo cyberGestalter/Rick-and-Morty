@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/episode_search_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/search_box_margin"
+        android:layout_marginVertical="@dimen/search_box_margin"
+        app:cardCornerRadius="@dimen/search_box_radius"
+        app:cardElevation="@dimen/search_box_elevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/item_padding">
+
+            <EditText
+                android:id="@+id/episode_search_season_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:hint="@string/episode_search_season_title"
+                android:inputType="number"
+                android:textSize="@dimen/value_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/episode_search_episode_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:hint="@string/episode_search_episode_title"
+                android:inputType="number"
+                android:textSize="@dimen/value_text_size"
+                app:layout_constraintStart_toStartOf="@id/episode_search_season_title"
+                app:layout_constraintTop_toBottomOf="@id/episode_search_season_title" />
+
+            <Button
+                android:id="@+id/episode_search_reset_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:backgroundTint="@color/purple_200"
+                android:text="@string/search_reset_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/episode_search_find_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/episode_search_episode_title" />
+
+            <Button
+                android:id="@+id/episode_search_find_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin"
+                android:text="@string/search_find_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/episode_search_reset_button"
+                app:layout_constraintTop_toBottomOf="@id/episode_search_episode_title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
